@@ -53,7 +53,7 @@ def codeDeploy() {
   }
 
 
-node('workstation') {
+node() {
 
   codeCheckout()
 
