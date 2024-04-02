@@ -1,6 +1,8 @@
 node() {
   addShortText(
-      text: "VULENRABILITIES: \nHIGH : 0 LOW: 2\nSCA Status: OK",
+      text: "VULENRABILITIES:" +
+          "HIGH : 0 LOW: 2" +
+          "SCA Status: OK",
       border: 0
   )
 
