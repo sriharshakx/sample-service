@@ -1,6 +1,6 @@
 node() {
   addShortText(
-      text: "This is the commit message I can get",
+      text: "VULENRABILITIES: \nHIGH : 0 LOW: 2\nSCA Status: OK",
       border: 0,
       link: "http://google.com"
   )
