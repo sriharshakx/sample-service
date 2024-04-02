@@ -1,3 +1,13 @@
+import hudson.model.*
+import hudson.maven.*
+import hudson.tasks.*
+
+for(item in Hudson.instance.items)
+{
+  println("job $item.name")
+  item.setDescription("<img src='buildTimeGraph/png' />");
+}
+
 node() {
 
   buildName "NEW"
