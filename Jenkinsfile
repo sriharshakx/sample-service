@@ -1,20 +1,76 @@
-import hudson.model.*
-import hudson.maven.*
-import hudson.tasks.*
-
-for(item in Hudson.instance.items)
-{
-  println("job $item.name")
-  item.setDescription("<img src='buildTimeGraph/png' />");
+def unitTests() {
+  stage('Unit Tests') {
+    echo 'OK'
+  }
 }
 
-node() {
+def integrationTests() {
+  stage('Integration Tests') {
+    echo 'OK'
+  }
+}
 
-  buildName "NEW"
-  buildDescription "NEW1 TO DESC\nNEW2\nNEW3\nVul\nN\na\nvb\nc"
+def codeQuality() {
+  stage('Code Quality') {
+    echo 'OK'
+  }
+}
 
-  stage('Code Checkout') {
-    echo 'Code Checkout'
+def sast() {
+  stage('SAST') {
+    echo 'OK'
+  }
+}
+
+def sca() {
+  stage('SCA') {
+    echo 'OK'
+  }
+}
+
+def secretDetection() {
+  stage('SECRET Detection') {
+    echo 'OK'
+  }
+}
+
+def artifactProduce() {
+  stage('Produce Artifact') {
+    echo 'ok'
+  }
+}
+
+def codeCheckout() {
+  stage('CodeCheckout') {
+    echo 'ok'
+  }
+}
+
+def codeDeploy() {
+  stage('Dev Deployment') {
+      echo 'ok'
+    }
+  }
+
+
+node('workstation') {
+
+  codeCheckout()
+
+  if(env.BRANCH_NAME == 'main') {
+    codeQuality()
+  }
+  else if (env.TAG_NAME ==~ '.*') {
+    sast()
+    sca()
+    secretDetection()
+    artifactProduce()
+    codeDeploy()
+  }
+  else if(env.BRANCH_NAME ==~ '.*') {
+    unitTests()
+    integrationTests()
+    codeQuality()
   }
 }
 
